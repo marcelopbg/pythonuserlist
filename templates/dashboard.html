@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1>Dashboard,<small> Welcome {{session.username}}</small></h1>
+<h1>Users table</h1>
+{{json}}
+<table class="table">
+  <thead>
+    <th scope="col">Id: </th>
+     <th scope="col">Username: </th>
+     <th scope="col">Email: </th>
+     <th scope="col">Name: </th>
+
+  </thead>
+<tbody>
+  {% for user in data %}
+  <tr>
+    <td>
+      {{user.id}}
+    </td>
+<td>
+  {{user.username}}
+</td>
+<td>
+ {{user.email}}
+</td>
+<td>
+  {{user.name}}
+
+</td>
+
+
+
+      </tr>
+      {% endfor %}
+</tbody>
+</table>
+  <form action="/exportcsv" method="post">
+    <input type="hidden" name="somedata"  class="form-control" value='{{json}}'>
+  <button type="submit" class="btn btn-info">Exportar excel</button>
+</form>
+{% endblock %}
