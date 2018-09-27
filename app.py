@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, flash,  request, url_for, redirect, session, logging, make_response, jsonify
-from data import Articles
 from flask_mysqldb import MySQL
 from wtforms import Form, HiddenField, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
@@ -11,17 +10,21 @@ import csv
 
 app = Flask(__name__)
 
+app.secret_key = 'mysecret'
+
+
 #config Mysql
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = 'marcelopbg.mysql.pythonanywhere-services.com'
 app.config['MYSQL_USER'] = 'marcelopbg'
-app.config['MYSQL_PASSWORD'] = '123'
-app.config['MYSQL_DB'] = 'myflaskapp'
+app.config['MYSQL_PASSWORD'] = 'guimaraes1'
+app.config['MYSQL_DB'] = 'marcelopbg$myflaskapp'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 #init mysql
 
 mysql = MySQL(app)
+
 
 @app.route('/exportcsv', methods=['POST'])
 
@@ -215,12 +218,12 @@ def dashboard(**kwargs):
 
     return render_template('dashboard.html', data=users, json=ajson)
 
-    # cur.close()
+    cur.close()
 
 
 
-if __name__ == "__main__":
+    #if __name__ == "__main__":
 
-    app.secret_key= 'secret123'
+       # app.secret_key= 'secret123'
 
-    #app.run(debug=True)
+       #app.run()
