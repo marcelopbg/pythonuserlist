@@ -23,9 +23,6 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 mysql = MySQL(app)
 
-Articles = Articles()
-
-
 @app.route('/exportcsv', methods=['POST'])
 
 def export():
@@ -226,4 +223,4 @@ if __name__ == "__main__":
 
     app.secret_key= 'secret123'
 
-    app.run(debug=True)
+    #app.run(debug=True)
