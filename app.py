@@ -30,24 +30,9 @@ mysql = MySQL(app)
 
 def export():
     data = request.form['someshit']
-    # aobj = json.loads(data)
-
-    # json.dump()
-    # f = open(raw)
-    # json_raw= data.readlines()
+   
     myjson = json.loads(data)
-
-
-    app.logger.info('help jesus %s', myjson)
-    # csv = 'foo,bar,baz\nhai,bai,crai\n'
-    # for (k, v) in myjson.iteritems():
-    #    app.loader.info("Key: " + k)
-    #    app.loader.info("Value: " + str(v))
-    # response = make_response(csv)
-    # cd = 'attachment; filename=mycsv.csv'
-    # response.headers['Content-Disposition'] = cd
-    # response.mimetype='text/csv'
-
+    
     return data
 
 
@@ -180,42 +165,9 @@ def dashboard(**kwargs):
     users = cur.fetchall()
     for row in users:
         results.append(dict(zip(columns, row)))
-    # myjson =
-    app.logger.info('log de cristo %s',  json.dumps(result))
-    # app.logger.info(results, indent=2)
-    # objects_list = []
-    # for row in users:
-    #     d = collections.OrderedDict()
-    #     d['id'] = row.id
-    #     d['name'] = row.username
-    #     d['username'] = row.email
-    #     d['email'] = row.name
-    #     objects_list.append(d)
-    # j = json.dumps(objects_list)
-    # app.logger.info('algo', j)
-        # t = (row.name, row.username, row.email)
-        # rowarray_list.append(t)
 
     ajson = json.dumps(users)
-    # for user in users:
-        # app.logger.info(user)
-        # pprint(user['username'])
-        # if users:
-        #         kwargs.update({'args': users})
-        #
-        #         ajson =  json.dumps(kwargs,  sort_keys = True, indent = 4,
-        #        ensure_ascii = True)
-
-        # astring = print(ajson)
-    # app.logger.info(ajson)
-
-        # for user in users:
-            # app.logger.info(user)
-            # pprint(user['username'])
-        # d = json.dumps(users, ensure_ascii=False)
-        # asjson = json.load(users)
-        # app.logger.info(json)
-
+  
     return render_template('dashboard.html', data=users, json=ajson)
 
     cur.close()
